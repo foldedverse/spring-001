@@ -1,5 +1,6 @@
 package com.in28mintes.rest.webservice.restfullwebservice.helloworld;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -10,6 +11,9 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class HelloWorldController {
 
+	@Value("${spring.message}")
+	private String message;
+	
 	// /hello-world
 	// Return hello world back
 	@RequestMapping(method=RequestMethod.GET,path = "/hello-world")
@@ -19,7 +23,7 @@ public class HelloWorldController {
 	
 	@GetMapping(path="/gethello")
 	public String getCall() {
-		return "Get Call";
+		return "Get Call "+ message;
 	}
 	
 	@GetMapping(path="/getbean")
